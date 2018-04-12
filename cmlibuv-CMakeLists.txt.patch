@@ -1,0 +1,14 @@
+--- Utilities/cmlibuv/CMakeLists.txt	2018-04-12 15:47:39.828687159 +0000
++++ Utilities/cmlibuv/CMakeLists.txt.new	2018-04-12 16:56:00.388545761 +0000
+@@ -177,6 +177,11 @@
+ 
+ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+   list(APPEND uv_libraries dl rt)
++
++  if (CMAKE_GNU_C_MACHINE MATCHES "uclibc")
++    list(APPEND uv_libraries pthread)
++  endif()
++
+   list(APPEND uv_headers
+     include/uv-linux.h
+     )

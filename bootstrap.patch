@@ -1,0 +1,22 @@
+--- bootstrap	2018-03-28 11:16:50.000000000 +0000
++++ bootstrap.new	2018-04-10 22:10:56.526436372 +0000
+@@ -42,7 +42,7 @@
+ }
+ 
+ # Detect system and directory information.
+-cmake_system=`uname`
++cmake_system=`uname -a`
+ cmake_source_dir=`cd "\`dirname \"$0\"\`";pwd`
+ cmake_binary_dir=`pwd`
+ 
+@@ -1345,6 +1345,10 @@
+     *Darwin*)
+       uv_c_flags="${uv_c_flags} -D_DARWIN_USE_64_BIT_INODE=1 -D_DARWIN_UNLIMITED_SELECT=1"
+       ;;
++    *OpenWrt*)
++      uvc_flags="${uv_c_flags} -D_GNU_SOURCE"
++      libs="${libs} -ldl -lrt -lpthread"
++      ;;
+     *Linux*)
+       uv_c_flags="${uv_c_flags} -D_GNU_SOURCE"
+       libs="${libs} -ldl -lrt"

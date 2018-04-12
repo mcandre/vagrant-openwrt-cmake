@@ -1,9 +1,5 @@
 # vagrant-openwrt-cmake: a Vagrant box with uClibC/Linux (OpenWrt) + cmake
 
-# ERROR
-
-Unfortunately, compilation is currently broken due to conflicts with OpenWrt Chaos Calmer's gcc support for pthreads.
-
 # VAGRANT CLOUD
 
 https://app.vagrantup.com/mcandre/boxes/vagrant-openwrt-cmake
@@ -13,8 +9,8 @@ https://app.vagrantup.com/mcandre/boxes/vagrant-openwrt-cmake
 ```console
 $ cd test
 $ vagrant up
-$ vagrant ssh -c "cd /vagrant && cmake . && cmake --build . --config Release"
-...
+$ vagrant ssh -c "cd /vagrant && cmake . && cmake --build . --config Release && bin/hello"
+Hello World!
 ```
 
 # RUNTIME REQUIREMENTS
