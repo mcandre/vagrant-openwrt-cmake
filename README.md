@@ -18,6 +18,14 @@ Hello World!
 * [Vagrant](https://www.vagrantup.com)
 * The [VirtualBox](https://www.virtualbox.org) hypervisor provider
 
+## Synced folders note
+
+This box requires an additional explicit chown to fix guest file permissions:
+
+```console
+$ vagrant ssh -c "sudo find /vagrant -exec chown vagrant:vagrant {} +"
+```
+
 ## Recommended
 
 * [vagrant-rsync-back](https://github.com/smerrill/vagrant-rsync-back) assists in copying artifacts from the guest to the host
