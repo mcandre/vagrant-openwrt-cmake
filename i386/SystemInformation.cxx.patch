@@ -1,0 +1,14 @@
+--- Source/kwsys/SystemInformation.cxx	2018-04-11 02:50:20.652237599 +0000
++++ Source/kwsys/SystemInformation.cxx.new	2018-04-11 02:54:10.841331507 +0000
+@@ -114,7 +114,11 @@
+ #endif
+ 
+ #if defined(__linux) || defined(__sun) || defined(_SCO_DS)
++
++#if !defined(__UCLIBC__)
+ #include <fenv.h>
++#endif
++
+ #include <netdb.h>
+ #include <netinet/in.h>
+ #include <sys/socket.h>

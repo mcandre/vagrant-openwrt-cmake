@@ -1,0 +1,45 @@
+--- Source/cmQtAutoGenerator.cxx	2018-04-11 03:33:54.335330199 +0000
++++ Source/cmQtAutoGenerator.cxx.new	2018-04-11 03:33:51.035200219 +0000
+@@ -15,6 +15,19 @@
+ 
+ #include <algorithm>
+ 
++#if defined(__UCLIBC__)
++#include <sstream>
++
++template <typename T>
++std::string to_string(T val) {
++  std::stringstream stream;
++  stream << val;
++  return stream.str();
++}
++#else
++#define to_string std::to_string
++#endif
++
+ // -- Class methods
+ 
+ void cmQtAutoGenerator::Logger::SetVerbose(bool value)
+@@ -392,7 +405,7 @@
+       if (!proc->Result()->error()) {
+         proc->Result()->ErrorMessage =
+           "libuv reading from pipe failed with error code ";
+-        proc->Result()->ErrorMessage += std::to_string(nread);
++        proc->Result()->ErrorMessage += to_string(nread);
+       }
+     }
+     // Clear libuv pipe handle and try to finish
+@@ -529,11 +542,11 @@
+       if (termSignal != 0) {
+         proc.Result()->ErrorMessage = "Process was terminated by signal ";
+         proc.Result()->ErrorMessage +=
+-          std::to_string(proc.Result()->TermSignal);
++          to_string(proc.Result()->TermSignal);
+       } else if (exitStatus != 0) {
+         proc.Result()->ErrorMessage = "Process failed with return value ";
+         proc.Result()->ErrorMessage +=
+-          std::to_string(proc.Result()->ExitStatus);
++          to_string(proc.Result()->ExitStatus);
+       }
+     }
+ 

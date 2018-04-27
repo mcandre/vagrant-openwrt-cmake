@@ -1,0 +1,31 @@
+--- Source/CTest/cmProcess.cxx	2018-04-11 03:54:02.255447899 +0000
++++ Source/CTest/cmProcess.cxx.new	2018-04-11 03:53:59.755333958 +0000
+@@ -18,6 +18,19 @@
+ 
+ #define CM_PROCESS_BUF_SIZE 65536
+ 
++#if defined(__UCLIBC__)
++#include <sstream>
++
++template <typename T>
++std::string to_string(T val) {
++  std::stringstream stream;
++  stream << val;
++  return stream.str();
++}
++#else
++#define to_string std::to_string
++#endif
++
+ #if defined(_WIN32) && !defined(__CYGWIN__)
+ #include <io.h>
+ 
+@@ -712,7 +725,7 @@
+ #endif
+     default:
+       exception_str = "Signal ";
+-      exception_str += std::to_string(this->Signal);
++      exception_str += to_string(this->Signal);
+   }
+ #endif
+   return exception_str;

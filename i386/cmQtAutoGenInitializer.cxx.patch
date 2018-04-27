@@ -1,0 +1,31 @@
+--- Source/cmQtAutoGenInitializer.cxx	2018-04-11 03:42:10.694875994 +0000
++++ Source/cmQtAutoGenInitializer.cxx.new	2018-04-11 03:42:07.264740949 +0000
+@@ -37,6 +37,19 @@
+ #include <utility>
+ #include <vector>
+ 
++#if defined(__UCLIBC__)
++#include <sstream>
++
++template <typename T>
++std::string to_string(T val) {
++  std::stringstream stream;
++  stream << val;
++  return stream.str();
++}
++#else
++#define to_string std::to_string
++#endif
++
+ inline static const char* SafeString(const char* value)
+ {
+   return (value != nullptr) ? value : "";
+@@ -880,7 +893,7 @@
+     this->Parallel = GetSafeProperty(this->Target, "AUTOGEN_PARALLEL");
+     if (this->Parallel.empty() || (this->Parallel == "AUTO")) {
+       // Autodetect number of CPUs
+-      this->Parallel = std::to_string(GetParallelCPUCount());
++      this->Parallel = to_string(GetParallelCPUCount());
+     }
+ 
+     cmGeneratedFileStream ofs;

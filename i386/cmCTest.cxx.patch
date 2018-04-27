@@ -1,0 +1,31 @@
+--- Source/cmCTest.cxx	2018-04-11 03:51:37.798852376 +0000
++++ Source/cmCTest.cxx.new	2018-04-11 03:51:33.158640107 +0000
+@@ -58,6 +58,19 @@
+ #include <be/kernel/OS.h> /* disable_debugger() API. */
+ #endif
+ 
++#if defined(__UCLIBC__)
++#include <sstream>
++
++template <typename T>
++std::string to_string(T val) {
++  std::stringstream stream;
++  stream << val;
++  return stream.str();
++}
++#else
++#define to_string std::to_string
++#endif
++
+ #define DEBUGOUT                                                              \
+   std::cout << __LINE__ << " ";                                               \
+   std::cout
+@@ -1095,7 +1108,7 @@
+   cmCTestLog(this, HANDLER_VERBOSE_OUTPUT, "Test timeout computed to be: "
+                << (timeout == cmCTest::MaxDuration()
+                      ? std::string("infinite")
+-                     : std::to_string(cmDurationTo<unsigned int>(timeout)))
++                     : to_string(cmDurationTo<unsigned int>(timeout)))
+                << "\n");
+   if (cmSystemTools::SameFile(argv[0], cmSystemTools::GetCTestCommand()) &&
+       !this->ForceNewCTestProcess) {

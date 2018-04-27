@@ -2,12 +2,13 @@
 
 # VAGRANT CLOUD
 
-https://app.vagrantup.com/mcandre/boxes/vagrant-openwrt-cmake
+* https://app.vagrantup.com/mcandre/boxes/vagrant-openwrt-cmake-amd64
+* https://app.vagrantup.com/mcandre/boxes/vagrant-openwrt-cmake-i386
 
 # EXAMPLE
 
 ```console
-$ cd test
+$ cd amd64/test
 $ vagrant up
 $ vagrant ssh -c "cd /vagrant && cmake . && cmake --build . --config Release && bin/hello"
 Hello World!
@@ -39,5 +40,6 @@ $ vagrant ssh -c "sudo find /vagrant -exec chown vagrant:vagrant {} +"
 # EXPORT
 
 ```console
-$ make vagrant-openwrt-cmake.box
+$ sh -c "cd amd64 && make vagrant-openwrt-cmake-amd64.box"
+$ sh -c "cd i386 && make vagrant-openwrt-cmake-i386.box"
 ```

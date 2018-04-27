@@ -1,0 +1,31 @@
+--- Source/CTest/cmCTestScriptHandler.cxx	2018-04-11 03:52:58.842555645 +0000
++++ Source/CTest/cmCTestScriptHandler.cxx.new	2018-04-11 03:52:56.192434671 +0000
+@@ -44,6 +44,19 @@
+ #include <unistd.h>
+ #endif
+ 
++#if defined(__UCLIBC__)
++#include <sstream>
++
++template <typename T>
++std::string to_string(T val) {
++  std::stringstream stream;
++  stream << val;
++  return stream.str();
++}
++#else
++#define to_string std::to_string
++#endif
++
+ class cmExecutionStatus;
+ struct cmListFileFunction;
+ 
+@@ -162,7 +175,7 @@
+     // set the current elapsed time
+     auto itime = cmDurationTo<unsigned int>(std::chrono::steady_clock::now() -
+                                             this->ScriptStartTime);
+-    auto timeString = std::to_string(itime);
++    auto timeString = to_string(itime);
+     this->Makefile->AddDefinition("CTEST_ELAPSED_TIME", timeString.c_str());
+   }
+ }

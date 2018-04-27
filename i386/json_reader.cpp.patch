@@ -1,0 +1,11 @@
+--- Utilities/cmjsoncpp/src/lib_json/json_reader.cpp	2018-04-11 03:18:54.889888968 +0000
++++ Utilities/cmjsoncpp/src/lib_json/json_reader.cpp.new	2018-04-11 03:18:51.769765967 +0000
+@@ -31,7 +31,7 @@
+ #elif defined(__ANDROID__) || defined(__QNXNTO__)
+ #define snprintf snprintf
+ #elif __cplusplus >= 201103L
+-#if !defined(__MINGW32__) && !defined(__CYGWIN__)
++#if !defined(__MINGW32__) && !defined(__CYGWIN__) && !defined(__UCLIBC__)
+ #define snprintf std::snprintf
+ #endif
+ #endif
