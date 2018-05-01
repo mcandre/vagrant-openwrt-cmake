@@ -1,9 +1,21 @@
 
-# Created by https://www.gitignore.io/api/vagrant
+# Created by https://www.gitignore.io/api/vagrant,cmake
+
+### CMake ###
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+build
 
 ### Vagrant ###
 .vagrant/
 *.box
 
 
-# End of https://www.gitignore.io/api/vagrant
+# End of https://www.gitignore.io/api/vagrant,cmake
