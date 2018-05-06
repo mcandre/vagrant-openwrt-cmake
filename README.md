@@ -10,6 +10,7 @@
 ```console
 $ cd amd64/test
 $ vagrant up
+$ vagrant ssh -c "sudo find /vagrant -exec chown vagrant:vagrant {} +"
 $ vagrant ssh -c "cd /vagrant && cmake . && cmake --build . --target lint && cmake --build . --config Release && bin/hello"
 Hello World!
 ```
