@@ -1,0 +1,9 @@
+--- Modules/Compiler/GNU.cmake	2018-03-28 06:16:49.000000000 -0500
++++ Modules/Compiler/GNU.cmake.new	2018-05-05 22:32:28.417018600 -0500
+@@ -87,3 +87,6 @@
+     )
+   endif()
+ endmacro()
++
++exec_program(${CMAKE_C_COMPILER} ARGS -dumpmachine OUTPUT_VARIABLE CMAKE_GNU_C_MACHINE)
++exec_program(${CMAKE_CXX_COMPILER} ARGS -dumpmachine OUTPUT_VARIABLE CMAKE_GNU_CXX_MACHINE)

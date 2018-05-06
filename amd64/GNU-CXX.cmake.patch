@@ -1,9 +1,0 @@
---- Modules/Compiler/GNU-CXX.cmake	2018-04-12 16:54:22.795595413 +0000
-+++ Modules/Compiler/GNU-CXX.cmake.new	2018-04-12 16:54:35.755980739 +0000
-@@ -38,4 +38,6 @@
-   set(CMAKE_CXX17_EXTENSION_COMPILE_OPTION "-std=gnu++1z")
- endif()
- 
-+exec_program(${CMAKE_CXX_COMPILER} ARGS -dumpmachine OUTPUT_VARIABLE CMAKE_GNU_CXX_MACHINE)
-+
- __compiler_check_default_language_standard(CXX 3.4 98 6.0 14)

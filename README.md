@@ -10,7 +10,7 @@
 ```console
 $ cd amd64/test
 $ vagrant up
-$ vagrant ssh -c "cd /vagrant && cmake . && cmake --build . --config Release && bin/hello"
+$ vagrant ssh -c "cd /vagrant && cmake . && cmake --build . --target lint && cmake --build . --config Release && bin/hello"
 Hello World!
 ```
 

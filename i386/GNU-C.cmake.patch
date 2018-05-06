@@ -1,9 +1,0 @@
---- Modules/Compiler/GNU-C.cmake	2018-04-12 16:53:52.764710524 +0000
-+++ Modules/Compiler/GNU-C.cmake.new	2018-04-12 16:54:07.615146706 +0000
-@@ -22,4 +22,6 @@
-   set(CMAKE_C11_EXTENSION_COMPILE_OPTION "-std=gnu1x")
- endif()
- 
-+exec_program(${CMAKE_C_COMPILER} ARGS -dumpmachine OUTPUT_VARIABLE CMAKE_GNU_C_MACHINE)
-+
- __compiler_check_default_language_standard(C 3.4 90 5.0 11)
