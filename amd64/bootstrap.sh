@@ -18,7 +18,8 @@ sudo opkg upgrade tar grep &&
         patch -p0 </tmp/cmCTest.cxx.patch && \
         patch -p0 </tmp/cmCTestScriptHandler.cxx.patch && \
         patch -p0 </tmp/cmProcess.cxx.patch && \
-        patch -p0 </tmp/GNU.cmake.patch && \
+        patch -p0 </tmp/GNU-C.cmake.patch && \
+        patch -p0 </tmp/GNU-CXX.cmake.patch && \
         patch -p0 </tmp/cmlibuv-CMakeLists.txt.patch && \
         ./configure --prefix=/usr && \
         make && \
