@@ -1,4 +1,7 @@
 #!/bin/sh
+set -eu
+IFS="$(printf '%b_' '\n\t ')"
+IFS="${IFS%_}"
 
 sudo opkg update &&
     sudo opkg install gcc patch wget libustream-openssl ca-certificates &&
